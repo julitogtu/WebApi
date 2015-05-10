@@ -8,28 +8,27 @@ namespace WebApiSimplePagination.Controllers
 {
     public class CustomerController : ApiController
     {
-        private AppContext context = new AppContext();
+        private readonly AppContext context = new AppContext();
 
         [ResponseType(typeof(CustomPaginateResult<Customer>))]
-        public IHttpActionResult GetCustomers(int page)
+        public IHttpActionResult GetCustomers(int page, int rows)
         {
             var totalRows = context.Customers.Count();
-            var totalPages = (int) Math.Ceiling((double) totalRows/20);
+            var totalPages = (int) Math.Ceiling((double) totalRows/rows);
             var results = context.Customers
                 .OrderBy(c => c.Id)
-                .Skip((page)*20)
-                .Take(20)
+                .Skip((page)*rows)
+                .Take(rows)
                 .ToList();
 
             var result = new CustomPaginateResult<Customer>()
             {
-                PageSize = 20,
+                PageSize = rows,
                 TotalRows = totalRows,
                 TotalPages = totalPages,
                 CurrentPage = page,
                 Results = results
             };
-
 
             return Ok(result);
         }

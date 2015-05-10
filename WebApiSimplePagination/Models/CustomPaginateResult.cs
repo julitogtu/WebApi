@@ -2,7 +2,7 @@
 
 namespace WebApiSimplePagination.Models
 {
-    public class CustomPaginateResult<T>
+    public class CustomPaginateResult<T> where T : class 
     {
         public int CurrentPage { get; set; }
 

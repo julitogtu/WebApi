@@ -21,9 +21,12 @@ var customersViewModel = {
     listPages: ko.observableArray(),
     totalCustomers: ko.observable(),
     customerList: ko.observableArray(),
+    itemsByPage: ko.observableArray([10, 20, 30]),
+    rows: ko.observable(),
     search: function () {
         var data = {
-            page: this.currentPage()
+            page: this.currentPage(),
+            rows: this.rows()
         };
         searchService.getCustomers(data)
             .success(function (response) {

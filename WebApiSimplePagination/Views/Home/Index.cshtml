@@ -21,28 +21,39 @@
             <h1>Web API Simple Pagination</h1>
             <p class="lead">
                 How to paginate results in Web API using a custom class. At the client, jQuery + Bootstrap + Knockout
-                <br/>
+                <br />
                 See the demo at: <a href="#" target="_blank">demo</a>
-                <br/>
+                <br />
                 See the code at: <a href="https://github.com/julitogtu/WebApi" target="_blank">code</a>
             </p>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <input type="button" value="Get Customers" class="btn btn-primary" data-bind="click:search"/>
+                <input type="button" value="Get Customers" class="btn btn-primary" data-bind="click:search" />
             </div>
         </div>
-        <hr/>
+        <hr />
         <div class="row">
             <div class="col-md-2">
-                <label>Total Customers: <strong data-bind="text:customersViewModel.totalCustomers"></strong> </label>
+                <label>Total Customers: </label>
+            </div>
+            <div class="col-md-2">
+                <strong data-bind="text:customersViewModel.totalCustomers"></strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Items by page: </label>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" data-bind="options: customersViewModel.itemsByPage, value:customersViewModel.rows"></select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <ul class="pagination" data-bind='foreach: customersViewModel.listPages'>
                     <li data-bind="css:{active: customersViewModel.currentPage() == $index()}"><a data-bind="text: $index() + 1, click:customersViewModel.changePage"></a></li>
-                </ul>    
+                </ul>
             </div>
         </div>
         <table id="tblData" class="table table-striped">
@@ -63,7 +74,7 @@
                 </tr>
             </tbody>
         </table>
-        <hr/>
+        <hr />
         <a href="https://twitter.com/julitogtu" target="_blank">@@julitogtu</a>
     </div>
     <script src="~/Scripts/index.js"></script>
