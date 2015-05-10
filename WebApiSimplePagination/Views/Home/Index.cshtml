@@ -1,0 +1,70 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Web API Simple Pagination</title>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/knockout-3.3.0.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+
+        <div class="starter-template">
+            <h1>Web API Simple Pagination</h1>
+            <p class="lead">
+                How to paginate results in Web API using a custom class. At the client, jQuery + Bootstrap + Knockout
+                <br/>
+                See the demo at: <a href="#" target="_blank">demo</a>
+                <br/>
+                See the code at: <a href="#" target="_blank">code</a>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="button" value="Get Customers" class="btn btn-primary" data-bind="click:search"/>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Total Customers: <strong data-bind="text:customersViewModel.totalCustomers"></strong> </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="pagination" data-bind='foreach: customersViewModel.listPages'>
+                    <li data-bind="css:{active: customersViewModel.currentPage() == $index()}"><a data-bind="text: $index() + 1, click:customersViewModel.changePage"></a></li>
+                </ul>    
+            </div>
+        </div>
+        <table id="tblData" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody data-bind='foreach: customersViewModel.customerList'>
+                <tr>
+                    <td valign="top" data-bind="text: Id"></td>
+                    <td valign="top" data-bind="text: Name"></td>
+                    <td valign="top" data-bind="text: LastName"></td>
+                    <td valign="top" data-bind="text: Email"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <script src="~/Scripts/index.js"></script>
+</body>
+</html>
