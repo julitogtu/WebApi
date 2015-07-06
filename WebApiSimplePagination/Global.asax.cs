@@ -22,7 +22,7 @@ namespace WebApiSimplePagination
 
         private static void DatabaseInitializer()
         {
-            Database.SetInitializer<AppContext>(new AppDbInitializer());
+            Database.SetInitializer<AppContext>(null);
             AppContext context = new AppContext();
             context.Database.Initialize(true);
         }

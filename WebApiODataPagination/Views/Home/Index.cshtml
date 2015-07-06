@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customers</h2>
+<div id="grid"></div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            LoadGrid();
+        });
+
+        function LoadGrid() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    type: "odata-v4",
+                    transport: {
+                        read: "http://localhost:48564/odata/Customer"
+                    },
+                    pageSize: 20,
+                    serverPaging: true
+                },
+                height: 550,
+                groupable: true,
+                sortable: true,
+                pageable: {
+                    refresh: true,
+                    pageSizes: true,
+                    buttonCount: 5
+                },
+                columns: [
+                    { field: "Name", title: "Name" },
+                    { field: "LastName", title: "Last Name" },
+                    { field: "Email", title: "Email" }
+                ]
+            });
+        }
+    </script>
+
+}
+
